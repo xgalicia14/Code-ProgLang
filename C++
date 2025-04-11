@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+// Static memory allocation example
+void staticMemoryExample() {
+    int arr[5]; // Statically allocated on the stack
+    for (int i = 0; i < 5; i++) {
+        arr[i] = i + 1;
+    }
+
+    cout << "Static Memory Allocation: ";
+    for (int i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+// Dynamic memory allocation example
+void dynamicMemoryExample() {
+    int* arr = new int[5]; // Dynamically allocated on the heap
+    for (int i = 0; i < 5; i++) {
+        arr[i] = (i + 1) * 10;
+    }
+
+    cout << "Dynamic Memory Allocation: ";
+    for (int i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    delete[] arr; // Free heap memory
+}
+
+// Proper handling of memory to avoid leaks
+void fixedMemoryLeakExample() {
+    int* nums = new int[5];
+    for (int i = 0; i < 5; i++) {
+        nums[i] = i * 3;
+    }
+
+    cout << "Memory Leak Fixed: ";
+    for (int i = 0; i < 5; i++) {
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+
+    delete[] nums; // Prevent memory leak
+}
+
+// Proper handling of dangling pointers
+void fixedDanglingPointerExample() {
+    int* ptr = new int(100);
+    cout << "Value before delete: " << *ptr << endl;
+
+    delete ptr; // ptr is now dangling
+    ptr = NULL; // Safe practice: set to NULL
+
+    if (ptr == NULL) {
+        cout << "Pointer is safely null after deletion." << endl;
+    }
+}
+
+
+
+int main() {
+    cout << "=== Memory Management Demonstration ===\n" << endl;
+
+    staticMemoryExample();
+    dynamicMemoryExample();
+    fixedMemoryLeakExample();
+    fixedDanglingPointerExample();
+
+    return 0;
+}
