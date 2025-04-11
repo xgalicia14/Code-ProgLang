@@ -1,0 +1,60 @@
+public class MemoryDemo {
+
+    // Simulating static memory allocation with fixed array
+    public static void staticMemoryExample() {
+        int[] arr = new int[5]; // Fixed-size array (like static allocation)
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i + 1;
+        }
+
+        System.out.print("Static Memory (fixed array): ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    // Dynamic memory in Java (all objects are dynamically allocated)
+    public static void dynamicMemoryExample() {
+        Integer[] arr = new Integer[5]; // Created at runtime
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (i + 1) * 10;
+        }
+
+        System.out.print("Dynamic Memory (object array): ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    // Simulated memory leak (retaining unused references)
+    public static void memoryLeakExample() {
+        java.util.List<String> list = new java.util.ArrayList<>();
+        for (int i = 0; i < 1_000_000; i++) {
+            list.add("Leak " + i); // Holding too many objects in memory
+        }
+        System.out.println("Simulated memory leak with growing list.");
+    }
+
+    // Simulated dangling reference (not actual pointer)
+    public static void danglingReferenceExample() {
+        String value = "Important Data";
+        String ref = value;
+
+        value = null; // Original reference cleared
+        if (ref != null) {
+            System.out.println("Reference still exists: " + ref);
+        } else {
+            System.out.println("Reference was lost.");
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("=== Java Memory Management Demo ===");
+        staticMemoryExample();
+        dynamicMemoryExample();
+        memoryLeakExample();
+        danglingReferenceExample();
+    }
+}
