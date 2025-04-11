@@ -1,0 +1,35 @@
+def static_memory_example():
+    arr = [i + 1 for i in range(5)]  # Fixed-size list
+    print("Static Memory (fixed list):", arr)
+
+def dynamic_memory_example():
+    arr = []
+    for i in range(5):
+        arr.append((i + 1) * 10)  # Dynamically expanding list
+    print("Dynamic Memory (growing list):", arr)
+
+def memory_leak_example():
+    leak_list = []
+    for i in range(1000000):
+        leak_list.append("Leak " + str(i))  # Holding data indefinitely
+    print("Simulated memory leak with a large list.")
+
+def dangling_reference_example():
+    class Dummy:
+        def __init__(self, name):
+            self.name = name
+
+    obj = Dummy("Important")
+    ref = obj
+    del obj  # Original reference deleted
+
+    try:
+        print("Reference still exists:", ref.name)
+    except NameError:
+        print("Reference is gone.")
+
+print("=== Python Memory Management Demo ===")
+static_memory_example()
+dynamic_memory_example()
+memory_leak_example()
+dangling_reference_example()
